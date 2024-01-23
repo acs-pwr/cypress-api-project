@@ -1,0 +1,28 @@
+{
+  "name": "test-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run --reporter mochawesome",
+    "delete:reports": "rm tests/results/junit/*.xml && rm tests/results/mochawesome/*.json || true",
+    "prereport": "npm run delete:reports",
+    "cypress:run": "npm run prereport && npx cypress run",
+    "mochawesome:merge": "npx mochawesome-merge \"tests/results/mochawesome/*.json\" > mochawesome.json && npx marge mochawesome.json",
+    "junit:merge": "npx junit-merge -d tests/results/junit -o tests/results/junit/result.xml",
+    "cypress-run-report": "sh run-cypress.bat"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^5.0.0",
+    "cypress": "^13.6.3",
+    "cypress-junit-reporter": "^1.3.1",
+    "cypress-multi-reporters": "^1.6.4",
+    "mocha-junit-reporter": "^2.2.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "prettier": "^3.2.4"
+  }
+}
